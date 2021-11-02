@@ -1,7 +1,10 @@
+
+
 package com.gangaown.shoppingkart.ui.shoppinglist
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +22,7 @@ class ShoppingKartActivity : AppCompatActivity(),KodeinAware {
 
 
     override val kodein by kodein()
-        private val factory:ViewModelFactory by instance()
+    private val factory:ViewModelFactory by instance()
 
     private lateinit var binding:ActivityShoppingkartBinding
 
@@ -34,6 +37,7 @@ class ShoppingKartActivity : AppCompatActivity(),KodeinAware {
         val adapter = ShoppingItemAdapter(listOf(),viewModel)
         binding.rvShoppingItems.layoutManager = LinearLayoutManager(this)
         binding.rvShoppingItems.adapter = adapter
+
         viewModel.getAllShoppingItems().observe(this, Observer {
 
             adapter.items = it
@@ -48,6 +52,5 @@ class ShoppingKartActivity : AppCompatActivity(),KodeinAware {
             }).show()
         }
     }
-
 
 }

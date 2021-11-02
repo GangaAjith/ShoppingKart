@@ -6,26 +6,26 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialog
 import com.gangaown.shoppingkart.R
 import com.gangaown.shoppingkart.data.db.entities.ShoppingItem
-import com.gangaown.shoppingkart.databinding.DialogAddShoppingItemBinding
+import com.gangaown.shoppingkart.databinding.DialogItemBinding
 
 
 class AddShoppingItemDialog(context:Context,var addDialogListener:AddDialogListener):AppCompatDialog(context) {
 
-    private lateinit var binding:DialogAddShoppingItemBinding
+    private lateinit var binding: DialogItemBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DialogAddShoppingItemBinding.inflate(layoutInflater)
+        binding = DialogItemBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
 
-        binding.tvAdd.setOnClickListener{
+        binding.btnAdd.setOnClickListener{
             val name = binding.etName.text.toString()
-            val amount = binding.etAmount.text.toString()
+            val amount = binding.etQuantity.text.toString()
 
             if(name.isEmpty()||amount.isEmpty()){
-                Toast.makeText(context,"Please enter all the details! ",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,"Please enter an item! ",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -34,7 +34,7 @@ class AddShoppingItemDialog(context:Context,var addDialogListener:AddDialogListe
             dismiss()
         }
 
-        binding.tvCancel.setOnClickListener{
+        binding.btnCancel.setOnClickListener{
             cancel()
         }
     }
